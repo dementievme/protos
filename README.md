@@ -8,7 +8,7 @@ go get github.com/dementievme/nutrition-protos.git
 ```
 How to generate code:
 You need the ```protoc``` utility and the ```grpc``` plugin for golang.
-
+You should be in the folder ```/protos```.
 1. Run Makefile for automatic code-generation start.
 ```
 make proto
