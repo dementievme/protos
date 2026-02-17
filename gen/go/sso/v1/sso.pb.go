@@ -332,7 +332,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x04Auth\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x126\n" +
-	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponseB2Z0github.com/dementievme/protos/proto/sso/v1;ssov1b\x06proto3"
+	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponseB3Z1github.com/dementievme/protos/gen/go/sso/v1;ssov1b\x06proto3"
 
 var (
 	file_sso_v1_sso_proto_rawDescOnce sync.Once
