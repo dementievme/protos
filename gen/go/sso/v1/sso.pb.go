@@ -24,7 +24,7 @@ const (
 type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	PassHash      string                 `protobuf:"bytes,2,opt,name=pass_hash,json=passHash,proto3" json:"pass_hash,omitempty"`
+	Pass          string                 `protobuf:"bytes,2,opt,name=pass,proto3" json:"pass,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -66,9 +66,9 @@ func (x *RegisterRequest) GetEmail() string {
 	return ""
 }
 
-func (x *RegisterRequest) GetPassHash() string {
+func (x *RegisterRequest) GetPass() string {
 	if x != nil {
-		return x.PassHash
+		return x.Pass
 	}
 	return ""
 }
@@ -120,7 +120,7 @@ func (x *RegisterResponse) GetUserId() int64 {
 type LoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	PassHash      string                 `protobuf:"bytes,2,opt,name=pass_hash,json=passHash,proto3" json:"pass_hash,omitempty"`
+	Pass          string                 `protobuf:"bytes,2,opt,name=pass,proto3" json:"pass,omitempty"`
 	AppId         int32                  `protobuf:"varint,3,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -163,9 +163,9 @@ func (x *LoginRequest) GetEmail() string {
 	return ""
 }
 
-func (x *LoginRequest) GetPassHash() string {
+func (x *LoginRequest) GetPass() string {
 	if x != nil {
-		return x.PassHash
+		return x.Pass
 	}
 	return ""
 }
@@ -313,15 +313,15 @@ var File_sso_v1_sso_proto protoreflect.FileDescriptor
 
 const file_sso_v1_sso_proto_rawDesc = "" +
 	"\n" +
-	"\x10sso/v1/sso.proto\x12\x04auth\"D\n" +
+	"\x10sso/v1/sso.proto\x12\x04auth\";\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1b\n" +
-	"\tpass_hash\x18\x02 \x01(\tR\bpassHash\"+\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
+	"\x04pass\x18\x02 \x01(\tR\x04pass\"+\n" +
 	"\x10RegisterResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"X\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"O\n" +
 	"\fLoginRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1b\n" +
-	"\tpass_hash\x18\x02 \x01(\tR\bpassHash\x12\x15\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
+	"\x04pass\x18\x02 \x01(\tR\x04pass\x12\x15\n" +
 	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"%\n" +
 	"\rLoginResponse\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
