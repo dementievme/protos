@@ -8,6 +8,7 @@ service Auth {
     rpc Register (RegisterRequest) returns (RegisterResponse);
     rpc Login (LoginRequest) returns (LoginResponse);
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+    rpc VerifyToken (VerifyTokenRequest) returns (VerifyTokenResponse);
 }
 
 message RegisterRequest {
@@ -35,4 +36,12 @@ message IsAdminRequest {
 
 message IsAdminResponse {
     bool is_admin = 1;
+}
+
+message VerifyTokenRequest {
+    string token = 1;
+}
+
+message VerifyTokenResponse {
+    bool is_valid = 1;
 }
