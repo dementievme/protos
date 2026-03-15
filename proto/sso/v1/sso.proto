@@ -5,10 +5,15 @@ package auth;
 option go_package = "github.com/dementievme/protos/gen/go/sso/v1;ssov1";
 
 service Auth {
+    // Auth 
     rpc Register (RegisterRequest) returns (RegisterResponse);
     rpc Login (LoginRequest) returns (LoginResponse);
+    rpc Logout (LogoutRequest) returns (LogoutResponse);
+
+    // Credentials
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
     rpc VerifyToken (VerifyTokenRequest) returns (VerifyTokenResponse);
+    rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
 }
 
 message RegisterRequest {
@@ -43,5 +48,22 @@ message VerifyTokenRequest {
 }
 
 message VerifyTokenResponse {
-    bool is_valid = 1;
+    int64 user_id = 1;
+    int32 app_id = 2;
 }
+
+message ChangePasswordRequest {
+    int64 user_id = 1;
+    string old_pass = 2;
+    string new_pass = 3;
+}
+
+message ChangePasswordResponse {
+    string new_token = 1;
+}
+
+message LogoutRequest {
+    int64 user_id = 1;
+}
+
+message LogoutResponse {}
