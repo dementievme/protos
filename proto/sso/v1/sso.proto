@@ -56,6 +56,7 @@ message ChangePasswordRequest {
     int64 user_id = 1;
     string old_pass = 2;
     string new_pass = 3;
+    int32 app_id = 4;
 }
 
 message ChangePasswordResponse {

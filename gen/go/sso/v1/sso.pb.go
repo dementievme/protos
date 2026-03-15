@@ -410,6 +410,7 @@ type ChangePasswordRequest struct {
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	OldPass       string                 `protobuf:"bytes,2,opt,name=old_pass,json=oldPass,proto3" json:"old_pass,omitempty"`
 	NewPass       string                 `protobuf:"bytes,3,opt,name=new_pass,json=newPass,proto3" json:"new_pass,omitempty"`
+	AppId         int32                  `protobuf:"varint,4,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -463,6 +464,13 @@ func (x *ChangePasswordRequest) GetNewPass() string {
 		return x.NewPass
 	}
 	return ""
+}
+
+func (x *ChangePasswordRequest) GetAppId() int32 {
+	if x != nil {
+		return x.AppId
+	}
+	return 0
 }
 
 type ChangePasswordResponse struct {
@@ -613,11 +621,12 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"E\n" +
 	"\x13VerifyTokenResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x15\n" +
-	"\x06app_id\x18\x02 \x01(\x05R\x05appId\"f\n" +
+	"\x06app_id\x18\x02 \x01(\x05R\x05appId\"}\n" +
 	"\x15ChangePasswordRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x19\n" +
 	"\bold_pass\x18\x02 \x01(\tR\aoldPass\x12\x19\n" +
-	"\bnew_pass\x18\x03 \x01(\tR\anewPass\"5\n" +
+	"\bnew_pass\x18\x03 \x01(\tR\anewPass\x12\x15\n" +
+	"\x06app_id\x18\x04 \x01(\x05R\x05appId\"5\n" +
 	"\x16ChangePasswordResponse\x12\x1b\n" +
 	"\tnew_token\x18\x01 \x01(\tR\bnewToken\"(\n" +
 	"\rLogoutRequest\x12\x17\n" +
