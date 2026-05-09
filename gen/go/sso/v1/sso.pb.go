@@ -76,6 +76,7 @@ func (x *RegisterRequest) GetPass() string {
 type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SessionId     string                 `protobuf:"bytes,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -115,6 +116,13 @@ func (x *RegisterResponse) GetUserId() int64 {
 		return x.UserId
 	}
 	return 0
+}
+
+func (x *RegisterResponse) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
 }
 
 type LoginRequest struct {
@@ -179,7 +187,7 @@ func (x *LoginRequest) GetAppId() int32 {
 
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -214,9 +222,9 @@ func (*LoginResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *LoginResponse) GetToken() string {
+func (x *LoginResponse) GetSessionId() string {
 	if x != nil {
-		return x.Token
+		return x.SessionId
 	}
 	return ""
 }
@@ -309,27 +317,27 @@ func (x *IsAdminResponse) GetIsAdmin() bool {
 	return false
 }
 
-type VerifyTokenRequest struct {
+type SessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VerifyTokenRequest) Reset() {
-	*x = VerifyTokenRequest{}
+func (x *SessionRequest) Reset() {
+	*x = SessionRequest{}
 	mi := &file_sso_v1_sso_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VerifyTokenRequest) String() string {
+func (x *SessionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VerifyTokenRequest) ProtoMessage() {}
+func (*SessionRequest) ProtoMessage() {}
 
-func (x *VerifyTokenRequest) ProtoReflect() protoreflect.Message {
+func (x *SessionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_sso_v1_sso_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -341,19 +349,19 @@ func (x *VerifyTokenRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VerifyTokenRequest.ProtoReflect.Descriptor instead.
-func (*VerifyTokenRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use SessionRequest.ProtoReflect.Descriptor instead.
+func (*SessionRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *VerifyTokenRequest) GetToken() string {
+func (x *SessionRequest) GetSessionId() string {
 	if x != nil {
-		return x.Token
+		return x.SessionId
 	}
 	return ""
 }
 
-type VerifyTokenResponse struct {
+type SessionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	AppId         int32                  `protobuf:"varint,2,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
@@ -361,20 +369,20 @@ type VerifyTokenResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VerifyTokenResponse) Reset() {
-	*x = VerifyTokenResponse{}
+func (x *SessionResponse) Reset() {
+	*x = SessionResponse{}
 	mi := &file_sso_v1_sso_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VerifyTokenResponse) String() string {
+func (x *SessionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VerifyTokenResponse) ProtoMessage() {}
+func (*SessionResponse) ProtoMessage() {}
 
-func (x *VerifyTokenResponse) ProtoReflect() protoreflect.Message {
+func (x *SessionResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_sso_v1_sso_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -386,19 +394,19 @@ func (x *VerifyTokenResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VerifyTokenResponse.ProtoReflect.Descriptor instead.
-func (*VerifyTokenResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use SessionResponse.ProtoReflect.Descriptor instead.
+func (*SessionResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *VerifyTokenResponse) GetUserId() int64 {
+func (x *SessionResponse) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-func (x *VerifyTokenResponse) GetAppId() int32 {
+func (x *SessionResponse) GetAppId() int32 {
 	if x != nil {
 		return x.AppId
 	}
@@ -407,10 +415,8 @@ func (x *VerifyTokenResponse) GetAppId() int32 {
 
 type ChangePasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	OldPass       string                 `protobuf:"bytes,2,opt,name=old_pass,json=oldPass,proto3" json:"old_pass,omitempty"`
-	NewPass       string                 `protobuf:"bytes,3,opt,name=new_pass,json=newPass,proto3" json:"new_pass,omitempty"`
-	AppId         int32                  `protobuf:"varint,4,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	OldPass       string                 `protobuf:"bytes,1,opt,name=old_pass,json=oldPass,proto3" json:"old_pass,omitempty"`
+	NewPass       string                 `protobuf:"bytes,2,opt,name=new_pass,json=newPass,proto3" json:"new_pass,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -445,13 +451,6 @@ func (*ChangePasswordRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ChangePasswordRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
 func (x *ChangePasswordRequest) GetOldPass() string {
 	if x != nil {
 		return x.OldPass
@@ -466,16 +465,9 @@ func (x *ChangePasswordRequest) GetNewPass() string {
 	return ""
 }
 
-func (x *ChangePasswordRequest) GetAppId() int32 {
-	if x != nil {
-		return x.AppId
-	}
-	return 0
-}
-
 type ChangePasswordResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	NewToken      string                 `protobuf:"bytes,1,opt,name=new_token,json=newToken,proto3" json:"new_token,omitempty"`
+	NewSessionId  string                 `protobuf:"bytes,1,opt,name=new_session_id,json=newSessionId,proto3" json:"new_session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -510,16 +502,16 @@ func (*ChangePasswordResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ChangePasswordResponse) GetNewToken() string {
+func (x *ChangePasswordResponse) GetNewSessionId() string {
 	if x != nil {
-		return x.NewToken
+		return x.NewSessionId
 	}
 	return ""
 }
 
 type LogoutRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SessionId     int64                  `protobuf:"varint,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -554,9 +546,9 @@ func (*LogoutRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *LogoutRequest) GetUserId() int64 {
+func (x *LogoutRequest) GetSessionId() int64 {
 	if x != nil {
-		return x.UserId
+		return x.SessionId
 	}
 	return 0
 }
@@ -604,40 +596,43 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x10sso/v1/sso.proto\x12\x04auth\";\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
-	"\x04pass\x18\x02 \x01(\tR\x04pass\"+\n" +
+	"\x04pass\x18\x02 \x01(\tR\x04pass\"J\n" +
 	"\x10RegisterResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"O\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x02 \x01(\tR\tsessionId\"O\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
 	"\x04pass\x18\x02 \x01(\tR\x04pass\x12\x15\n" +
-	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"%\n" +
-	"\rLoginResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
+	"\x06app_id\x18\x03 \x01(\x05R\x05appId\".\n" +
+	"\rLoginResponse\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\")\n" +
 	"\x0eIsAdminRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\",\n" +
 	"\x0fIsAdminResponse\x12\x19\n" +
-	"\bis_admin\x18\x01 \x01(\bR\aisAdmin\"*\n" +
-	"\x12VerifyTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"E\n" +
-	"\x13VerifyTokenResponse\x12\x17\n" +
+	"\bis_admin\x18\x01 \x01(\bR\aisAdmin\"/\n" +
+	"\x0eSessionRequest\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"A\n" +
+	"\x0fSessionResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x15\n" +
-	"\x06app_id\x18\x02 \x01(\x05R\x05appId\"}\n" +
-	"\x15ChangePasswordRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x19\n" +
-	"\bold_pass\x18\x02 \x01(\tR\aoldPass\x12\x19\n" +
-	"\bnew_pass\x18\x03 \x01(\tR\anewPass\x12\x15\n" +
-	"\x06app_id\x18\x04 \x01(\x05R\x05appId\"5\n" +
-	"\x16ChangePasswordResponse\x12\x1b\n" +
-	"\tnew_token\x18\x01 \x01(\tR\bnewToken\"(\n" +
-	"\rLogoutRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\x10\n" +
-	"\x0eLogoutResponse2\xf1\x02\n" +
+	"\x06app_id\x18\x02 \x01(\x05R\x05appId\"M\n" +
+	"\x15ChangePasswordRequest\x12\x19\n" +
+	"\bold_pass\x18\x01 \x01(\tR\aoldPass\x12\x19\n" +
+	"\bnew_pass\x18\x02 \x01(\tR\anewPass\">\n" +
+	"\x16ChangePasswordResponse\x12$\n" +
+	"\x0enew_session_id\x18\x01 \x01(\tR\fnewSessionId\".\n" +
+	"\rLogoutRequest\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\x03R\tsessionId\"\x10\n" +
+	"\x0eLogoutResponse2\xe5\x02\n" +
 	"\x04Auth\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x123\n" +
 	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\x126\n" +
-	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponse\x12B\n" +
-	"\vVerifyToken\x12\x18.auth.VerifyTokenRequest\x1a\x19.auth.VerifyTokenResponse\x12K\n" +
+	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponse\x126\n" +
+	"\aSession\x12\x14.auth.SessionRequest\x1a\x15.auth.SessionResponse\x12K\n" +
 	"\x0eChangePassword\x12\x1b.auth.ChangePasswordRequest\x1a\x1c.auth.ChangePasswordResponseB3Z1github.com/dementievme/protos/gen/go/sso/v1;ssov1b\x06proto3"
 
 var (
@@ -660,8 +655,8 @@ var file_sso_v1_sso_proto_goTypes = []any{
 	(*LoginResponse)(nil),          // 3: auth.LoginResponse
 	(*IsAdminRequest)(nil),         // 4: auth.IsAdminRequest
 	(*IsAdminResponse)(nil),        // 5: auth.IsAdminResponse
-	(*VerifyTokenRequest)(nil),     // 6: auth.VerifyTokenRequest
-	(*VerifyTokenResponse)(nil),    // 7: auth.VerifyTokenResponse
+	(*SessionRequest)(nil),         // 6: auth.SessionRequest
+	(*SessionResponse)(nil),        // 7: auth.SessionResponse
 	(*ChangePasswordRequest)(nil),  // 8: auth.ChangePasswordRequest
 	(*ChangePasswordResponse)(nil), // 9: auth.ChangePasswordResponse
 	(*LogoutRequest)(nil),          // 10: auth.LogoutRequest
@@ -672,13 +667,13 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	2,  // 1: auth.Auth.Login:input_type -> auth.LoginRequest
 	10, // 2: auth.Auth.Logout:input_type -> auth.LogoutRequest
 	4,  // 3: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	6,  // 4: auth.Auth.VerifyToken:input_type -> auth.VerifyTokenRequest
+	6,  // 4: auth.Auth.Session:input_type -> auth.SessionRequest
 	8,  // 5: auth.Auth.ChangePassword:input_type -> auth.ChangePasswordRequest
 	1,  // 6: auth.Auth.Register:output_type -> auth.RegisterResponse
 	3,  // 7: auth.Auth.Login:output_type -> auth.LoginResponse
 	11, // 8: auth.Auth.Logout:output_type -> auth.LogoutResponse
 	5,  // 9: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	7,  // 10: auth.Auth.VerifyToken:output_type -> auth.VerifyTokenResponse
+	7,  // 10: auth.Auth.Session:output_type -> auth.SessionResponse
 	9,  // 11: auth.Auth.ChangePassword:output_type -> auth.ChangePasswordResponse
 	6,  // [6:12] is the sub-list for method output_type
 	0,  // [0:6] is the sub-list for method input_type

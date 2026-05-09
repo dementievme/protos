@@ -23,7 +23,7 @@ const (
 	Auth_Login_FullMethodName          = "/auth.Auth/Login"
 	Auth_Logout_FullMethodName         = "/auth.Auth/Logout"
 	Auth_IsAdmin_FullMethodName        = "/auth.Auth/IsAdmin"
-	Auth_VerifyToken_FullMethodName    = "/auth.Auth/VerifyToken"
+	Auth_Session_FullMethodName        = "/auth.Auth/Session"
 	Auth_ChangePassword_FullMethodName = "/auth.Auth/ChangePassword"
 )
 
@@ -37,7 +37,7 @@ type AuthClient interface {
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	// Credentials
 	IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponse, error)
-	VerifyToken(ctx context.Context, in *VerifyTokenRequest, opts ...grpc.CallOption) (*VerifyTokenResponse, error)
+	Session(ctx context.Context, in *SessionRequest, opts ...grpc.CallOption) (*SessionResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 }
 
@@ -89,10 +89,10 @@ func (c *authClient) IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...gr
 	return out, nil
 }
 
-func (c *authClient) VerifyToken(ctx context.Context, in *VerifyTokenRequest, opts ...grpc.CallOption) (*VerifyTokenResponse, error) {
+func (c *authClient) Session(ctx context.Context, in *SessionRequest, opts ...grpc.CallOption) (*SessionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(VerifyTokenResponse)
-	err := c.cc.Invoke(ctx, Auth_VerifyToken_FullMethodName, in, out, cOpts...)
+	out := new(SessionResponse)
+	err := c.cc.Invoke(ctx, Auth_Session_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -119,7 +119,7 @@ type AuthServer interface {
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	// Credentials
 	IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error)
-	VerifyToken(context.Context, *VerifyTokenRequest) (*VerifyTokenResponse, error)
+	Session(context.Context, *SessionRequest) (*SessionResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
@@ -143,8 +143,8 @@ func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutR
 func (UnimplementedAuthServer) IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method IsAdmin not implemented")
 }
-func (UnimplementedAuthServer) VerifyToken(context.Context, *VerifyTokenRequest) (*VerifyTokenResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method VerifyToken not implemented")
+func (UnimplementedAuthServer) Session(context.Context, *SessionRequest) (*SessionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Session not implemented")
 }
 func (UnimplementedAuthServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ChangePassword not implemented")
@@ -242,20 +242,20 @@ func _Auth_IsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_VerifyToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(VerifyTokenRequest)
+func _Auth_Session_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).VerifyToken(ctx, in)
+		return srv.(AuthServer).Session(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_VerifyToken_FullMethodName,
+		FullMethod: Auth_Session_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).VerifyToken(ctx, req.(*VerifyTokenRequest))
+		return srv.(AuthServer).Session(ctx, req.(*SessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -302,8 +302,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_IsAdmin_Handler,
 		},
 		{
-			MethodName: "VerifyToken",
-			Handler:    _Auth_VerifyToken_Handler,
+			MethodName: "Session",
+			Handler:    _Auth_Session_Handler,
 		},
 		{
 			MethodName: "ChangePassword",
