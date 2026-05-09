@@ -415,8 +415,9 @@ func (x *SessionResponse) GetAppId() int32 {
 
 type ChangePasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OldPass       string                 `protobuf:"bytes,1,opt,name=old_pass,json=oldPass,proto3" json:"old_pass,omitempty"`
-	NewPass       string                 `protobuf:"bytes,2,opt,name=new_pass,json=newPass,proto3" json:"new_pass,omitempty"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	OldPass       string                 `protobuf:"bytes,2,opt,name=old_pass,json=oldPass,proto3" json:"old_pass,omitempty"`
+	NewPass       string                 `protobuf:"bytes,3,opt,name=new_pass,json=newPass,proto3" json:"new_pass,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -449,6 +450,13 @@ func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ChangePasswordRequest.ProtoReflect.Descriptor instead.
 func (*ChangePasswordRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ChangePasswordRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
 }
 
 func (x *ChangePasswordRequest) GetOldPass() string {
@@ -617,10 +625,11 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\"A\n" +
 	"\x0fSessionResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x15\n" +
-	"\x06app_id\x18\x02 \x01(\x05R\x05appId\"M\n" +
-	"\x15ChangePasswordRequest\x12\x19\n" +
-	"\bold_pass\x18\x01 \x01(\tR\aoldPass\x12\x19\n" +
-	"\bnew_pass\x18\x02 \x01(\tR\anewPass\">\n" +
+	"\x06app_id\x18\x02 \x01(\x05R\x05appId\"f\n" +
+	"\x15ChangePasswordRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x19\n" +
+	"\bold_pass\x18\x02 \x01(\tR\aoldPass\x12\x19\n" +
+	"\bnew_pass\x18\x03 \x01(\tR\anewPass\">\n" +
 	"\x16ChangePasswordResponse\x12$\n" +
 	"\x0enew_session_id\x18\x01 \x01(\tR\fnewSessionId\".\n" +
 	"\rLogoutRequest\x12\x1d\n" +

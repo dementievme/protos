@@ -18,17 +18,17 @@ service Auth {
 
 message RegisterRequest {
     string email = 1;
-    string pass = 2;
+    string pass  = 2;
 }
 
 message RegisterResponse {
-    int64  user_id = 1;
+    int64  user_id    = 1;
     string session_id = 2;
 }
 
 message LoginRequest {
-    string email = 1;
-    string pass = 2; 
+    string email  = 1;
+    string pass   = 2; 
     int32  app_id = 3;
 }
 
@@ -50,12 +50,13 @@ message SessionRequest {
 
 message SessionResponse {
     int64 user_id = 1;
-    int32 app_id = 2;
+    int32 app_id  = 2;
 }
 
 message ChangePasswordRequest {
-    string old_pass = 1;
-    string new_pass = 2;
+    int64  user_id  = 1;
+    string old_pass = 2;
+    string new_pass = 3;
 }
 
 message ChangePasswordResponse {
