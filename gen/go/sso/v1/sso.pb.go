@@ -511,7 +511,7 @@ func (x *ChangePasswordResponse) GetNewSessionId() string {
 
 type LogoutRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SessionId     int64                  `protobuf:"varint,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -546,11 +546,11 @@ func (*LogoutRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *LogoutRequest) GetSessionId() int64 {
+func (x *LogoutRequest) GetSessionId() string {
 	if x != nil {
 		return x.SessionId
 	}
-	return 0
+	return ""
 }
 
 type LogoutResponse struct {
@@ -625,7 +625,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x0enew_session_id\x18\x01 \x01(\tR\fnewSessionId\".\n" +
 	"\rLogoutRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\x03R\tsessionId\"\x10\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"\x10\n" +
 	"\x0eLogoutResponse2\xe5\x02\n" +
 	"\x04Auth\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +

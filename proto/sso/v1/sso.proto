@@ -63,7 +63,7 @@ message ChangePasswordResponse {
 }
 
 message LogoutRequest {
-    int64 session_id = 1;
+    string session_id = 1;
 }
 
 message LogoutResponse {}
