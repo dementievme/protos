@@ -35,34 +35,27 @@ message LoginResponse {
     string session_id = 1;
 }
 
-message IsAdminRequest {
-    int64 user_id = 1;
-}
+message IsAdminRequest {}
 
 message IsAdminResponse {
     bool is_admin = 1;
 }
 
-message SessionRequest {
-    string session_id = 1;
-}
+message SessionRequest {}
 
 message SessionResponse {
     int64 user_id = 1;
 }
 
 message ChangePasswordRequest {
-    int64  user_id  = 1;
-    string old_pass = 2;
-    string new_pass = 3;
+    string old_pass = 1;
+    string new_pass = 2;
 }
 
 message ChangePasswordResponse {
     string new_session_id = 1;
 }
 
-message LogoutRequest {
-    string session_id = 1;
-}
+message LogoutRequest {}
 
 message LogoutResponse {}
